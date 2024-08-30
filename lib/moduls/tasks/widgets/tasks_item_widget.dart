@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/core/page_routes_names.dart';
 import 'package:todo_app/model/task_model.dart';
 
 import '../../../core/firebase_utils.dart';
@@ -28,7 +29,7 @@ class TasksItemWidget extends StatelessWidget {
       child: Slidable(
         startActionPane: ActionPane(
           motion: const BehindMotion(),
-          extentRatio: 0.2,
+          // extentRatio: 0.2,
           children: [
             SlidableAction(
               padding: EdgeInsets.zero,
@@ -45,6 +46,21 @@ class TasksItemWidget extends StatelessWidget {
               foregroundColor: Colors.white,
               icon: Icons.delete,
               label: 'Delete',
+            ),
+            SlidableAction(
+              padding: EdgeInsets.zero,
+              borderRadius: const BorderRadius.only(
+                  // topLeft: Radius.circular(12),
+                  // bottomLeft: Radius.circular(12),
+                  ),
+              onPressed: (context) {
+                Navigator.pushNamed(context, PageRoutesNames.editTask,
+                    arguments: taskModel);
+              },
+              backgroundColor: Colors.green,
+              foregroundColor: Colors.white,
+              icon: Icons.edit,
+              label: 'Edit',
             ),
           ],
         ),
@@ -78,6 +94,17 @@ class TasksItemWidget extends StatelessWidget {
                         ? const Color(0xff61e757)
                         : theme.primaryColorLight,
                   ),
+                ),
+                Text(
+                  taskModel.description,
+                  style: theme.textTheme.bodyLarge?.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(
+                  height: 8,
                 ),
                 Row(
                   children: [
