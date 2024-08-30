@@ -4,6 +4,8 @@ import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/core/firebase_utils.dart';
+import 'package:todo_app/core/page_routes_names.dart';
 
 import '../../core/settings_provider.dart';
 
@@ -135,9 +137,38 @@ class _SettingsViewState extends State<SettingsView> {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 40,
+              ),
+              InkWell(
+                  onTap: () {
+                    FirebaseUtils.logout();
+                    Navigator.popAndPushNamed(context, PageRoutesNames.login);
+                  },
+                  child: Container(
+                      margin: EdgeInsets.symmetric(
+                          horizontal: mediaQuery.size.width * .2),
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(30)),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Logout"),
+                          SizedBox(
+                            width: 15,
+                          ),
+                          Icon(
+                            Icons.logout,
+                            size: 28,
+                            color: Colors.red,
+                          )
+                        ],
+                      )))
             ],
           ),
-        )
+        ),
       ],
     );
   }

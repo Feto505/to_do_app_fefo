@@ -242,10 +242,10 @@ class _LoginViewState extends State<LoginView> {
                         // print(emailController.text);
                         //   if(formKey.currentState!.validate()){
                         if (formKey.currentState!.validate()) {
-                          FirebaseUtils.signAccount(
-                                  emailController.text, passwordController.text)
-                              .then((onValue) {
-                            if (onValue) {
+                          FirebaseUtils.signAccount // EasyLoading.dismiss();
+                                  (emailController.text, passwordController.text)
+                              .then((value) {
+                            if (value) {
                               EasyLoading.dismiss();
                               Navigator.pushReplacementNamed(
                                   context, PageRoutesNames.layout);

@@ -50,6 +50,12 @@ class _AddTaskBottomSheetWedgitState extends State<AddTaskBottomSheetWedgit> {
             ),
             TextFormField(
               controller: titleController,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                fontFamily: "Poppins",
+                color: Colors.black,
+              ),
               decoration: const InputDecoration(hintText: "Enter Task Title"),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
@@ -64,6 +70,12 @@ class _AddTaskBottomSheetWedgitState extends State<AddTaskBottomSheetWedgit> {
             TextFormField(
               controller: descController,
               maxLines: 2,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                fontFamily: "Poppins",
+                color: Colors.black,
+              ),
               decoration:
                   const InputDecoration(hintText: "Enter Task Description"),
               validator: (value) {

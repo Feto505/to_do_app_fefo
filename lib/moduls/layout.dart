@@ -61,7 +61,7 @@ class _LayoutViewState extends State<LayoutView> {
               currentIndex = value;
             });
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(
                 label: "Tasks",
                 icon: ImageIcon(AssetImage("assets/icons/icon_list.png"))),

@@ -5,6 +5,7 @@ import 'package:todo_app/moduls/layout.dart';
 import 'package:todo_app/moduls/login/login_view.dart';
 import 'package:todo_app/moduls/rigistration/registerition_view.dart';
 import 'package:todo_app/moduls/splash/splash_view.dart';
+import 'package:todo_app/moduls/tasks/edit_task/edit_task_view.dart';
 
 class RoutesGenerator {
   static Route<dynamic> onGenerateRoutes(RouteSettings settings) {
@@ -24,6 +25,10 @@ class RoutesGenerator {
       case PageRoutesNames.layout:
         return MaterialPageRoute(
             builder: (context) => const LayoutView(), settings: settings);
+
+      case PageRoutesNames.editTask:
+        return MaterialPageRoute(
+            builder: (context) => const EditTaskView(), settings: settings);
 
       default:
         return MaterialPageRoute(

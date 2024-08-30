@@ -214,8 +214,8 @@ class _RegistrationViewState extends State<RegistrationView> {
                         if (formKey.currentState!.validate()) {
                           FirebaseUtils.createAccount(
                                   emailController.text, passwordController.text)
-                              .then((onValue) {
-                            if (onValue) {
+                              .then((value) {
+                            if (value) {
                               EasyLoading.dismiss();
                               SnackBarService.showSuccessMessage("Done Create");
                               Navigator.pop(context);

@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/core/firebase_utils.dart';
 import 'package:todo_app/model/task_model.dart';
 import 'package:todo_app/moduls/tasks/widgets/tasks_item_widget.dart';
 
 import '../../core/settings_provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TasksView extends StatefulWidget {
   const TasksView({super.key});
@@ -32,7 +32,7 @@ class _TasksViewState extends State<TasksView> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(bottom: 60),
+          padding: EdgeInsets.only(bottom: mediaQuery.size.height * 0.1),
           child: Stack(
             clipBehavior: Clip.none,
             // alignment: Alignment.bottomCenter,
@@ -192,6 +192,12 @@ class _TasksViewState extends State<TasksView> {
                 );
               }),
         ),
+        SizedBox(
+          height: mediaQuery.size.height * 0.099,
+        ),
+        SizedBox(
+          height: mediaQuery.size.height * 0.03,
+        )
       ],
     );
   }

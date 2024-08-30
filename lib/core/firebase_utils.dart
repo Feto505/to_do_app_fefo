@@ -57,6 +57,14 @@ class FirebaseUtils {
     );
   }
 
+  static Future<void> updateAllTask(TaskModel taskModel) async {
+    var collectionRef = getCollectionRef();
+    var docRef = collectionRef.doc(taskModel.id);
+    return docRef.update(
+      taskModel.toJson(),
+    );
+  }
+
   static Future<bool> createAccount(
       String emailAddress, String password) async {
     try {
@@ -70,20 +78,20 @@ class FirebaseUtils {
       return Future.value(true);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        EasyLoading.dismiss();
         print('The password provided is too weak.');
-        SnackBarService.showSuccessMessage("The password provided is too weak");
+        EasyLoading.dismiss();
+        SnackBarService.showErrorMessage("The password provided is too weak");
         return Future.value(false);
       } else if (e.code == 'email-already-in-use') {
-        EasyLoading.dismiss();
         print('The account already exists for that email.');
-        SnackBarService.showSuccessMessage(
+        EasyLoading.dismiss();
+        SnackBarService.showErrorMessage(
             "The account already exists for that email.");
         return Future.value(false);
       }
     } catch (e) {
-      EasyLoading.dismiss();
       print(e);
+      EasyLoading.dismiss();
       return Future.value(false);
     }
     return Future.value(false);
@@ -94,21 +102,29 @@ class FirebaseUtils {
       EasyLoading.show();
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: emailAddress, password: password);
+      // EasyLoading.show();
+      print(credential.credential?.token);
       return Future.value(true);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        EasyLoading.dismiss();
         print('No user found for that email.');
+        EasyLoading.dismiss();
         SnackBarService.showErrorMessage("No user found for that email.");
         return Future.value(false);
       } else if (e.code == 'wrong-password') {
-        EasyLoading.dismiss();
+        // EasyLoading.dismiss();
         print('Wrong password provided for that user.');
+        EasyLoading.dismiss();
         SnackBarService.showErrorMessage(
             "Wrong password provided for that user.");
         return Future.value(false);
       }
+      // return Future.value(false);
     }
     return Future.value(false);
+  }
+
+  static logout() {
+    FirebaseAuth.instance.signOut();
   }
 }
